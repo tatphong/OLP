@@ -24,7 +24,6 @@ CLUB.OUT
 3
 Giải thích
 Các cặp thỏa mãn:
-
 (1, 5) cùng giới tính và cùng điểm KHXH=5; điểm KHTN
 khác nhau
 (2, 4) cùng giới tính và cùng điểm KHTN=3; điểm KHXH
@@ -32,54 +31,101 @@ khác nhau
 (2, 6) cùng giới tính và cùng điểm KHTN=3; điểm KHXH
 khác nhau
 */
-#include <bits/stdc++.h>>
+#include <bits/stdc++.h>
 
 using namespace std;
 struct diem
 {
-    int tn,xh;
+    int tn,xh,gt=0;
 };
-diem nam[100001],nu[100001];
-int n,p=0,q=0;
-multimap <int,int> mp;
+int n,res=0;
+diem a[100001];
+vector <int> tnn[101];
+vector <int> xhh[101];
 void nhap()
 {
     //freopen("CLUB.INP","r",stdin);
     cin>>n;
-    int a;
-    int b;
-    int gt;
     for (int i=0;i<n;++i)
-    {
-        cin>>a;
-        cin>>b;
-        cin>>gt;
-        if (gt==1)
-        {
-            nam[p].tn=a;
-            nam[p++].xh=b;
-        }
-        else
-        {
-            nu[q].tn=a;
-            nu[q++].xh=b;
-        }
-    }
+        cin>>a[i].tn>>a[i].xh>>a[i].gt;
 }
 int socap(int n)
 {
-    if (n==1) return 0;
-    return n-1+socap(n-1);
+    return n*(n+1)/2;
 }
+
 int main()
 {
+    ios_base::sync_with_stdio(0);
     nhap();
-    for (int i=0;i<p;++i)
-        mp.insert({nam[i].tn,nam[i].xh});
-    for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-        cout << itr->first << '\t' << itr->second << '\n';
-
+    //xet nam
+    for (int i=0;i<n;++i)
+    {
+        if (a[i].gt==1)
+        {
+            tnn[a[i].tn].push_back(a[i].xh);
+            xhh[a[i].xh].push_back(a[i].tn);
+        }
     }
+    for (int i=0;i<=100;++i)
+    {
+        if (!tnn[i].empty())
+        {
+            res+=socap(tnn[i].size());
+            map <int,int> m;
+            for (int j=0;j<tnn[i].size();++j)
+                m[tnn[i][j]]++;
+            for (auto it=m.begin();it!=m.end();it++)
+                res-=socap(it->second);
+        }
+        if (!xhh[i].empty())
+        {
+            res+=socap(xhh[i].size());
+            map <int,int> m;
+            for (int j=0;j<xhh[i].size();++j)
+                m[xhh[i][j]]++;
+            for (auto it=m.begin();it!=m.end();it++)
+                res-=socap(it->second);
+        }
+    }
+    //clear
+    for (int i=0;i<=100;++i)
+    {
+        tnn[i].clear();
+        xhh[i].clear();
+    }
+    //xet nu
+
+    for (int i=0;i<n;++i)
+    {
+        if (a[i].gt==2)
+        {
+            tnn[a[i].tn].push_back(a[i].xh);
+            xhh[a[i].xh].push_back(a[i].tn);
+        }
+    }
+    for (int i=0;i<=100;++i)
+    {
+        if (!tnn[i].empty())
+        {
+            res+=socap(tnn[i].size());
+            map <int,int> m;
+            for (int j=0;j<tnn[i].size();++j)
+                m[tnn[i][j]]++;
+            for (auto it=m.begin();it!=m.end();it++)
+                res-=socap(it->second);
+        }
+        if (!xhh[i].empty())
+        {
+            res+=socap(xhh[i].size());
+            map <int,int> m;
+            for (int j=0;j<xhh[i].size();++j)
+                m[xhh[i][j]]++;
+            for (auto it=m.begin();it!=m.end();it++)
+                res-=socap(it->second);
+        }
+    }
+    cout<<res;
     return 0;
 }
 /*
