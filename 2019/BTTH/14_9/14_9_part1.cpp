@@ -2,6 +2,7 @@
 using namespace std;
 typedef pair <int,int> ii;
 int n,a[1000010];
+ii location[10];//bai3
 void bai2()
 {
     cin>>n;
@@ -60,7 +61,6 @@ void loang_corner(int x,int y,ii a[][3],int xbegin,int ybegin)
 void bai3()
 {
     cin>>n;
-    int x,y;
     while (n--)
     {
         ii a[3][3];
@@ -68,23 +68,43 @@ void bai3()
         for (int j=0;j<3;++j)
         {
             cin>>a[i][j].first;
-            if (a[i][j].first==9) {x=i;y=j;}
+            location[a[i][j].first].first=i;
+            location[a[i][j].first].second=j;
         }
 
+        int x=location[9].first,y=location[9].second;
         //solve 3 case
-        if (x==1&&y==1)             //case: center
+        if (x==1&&y==1)             //case1: center
         {
-            cout<<9;
+            cout<<a[x][y].first;
             a[x][y].second=1;
             loang_center(x,y,a);
         }
-        else if (x==1||y==1)        //case: half center
+        else if (x==1||y==1)        //case2: half center
         {
-
+            for (int i=8;i>0;--i)           //try to exchange to another case with highest value
+                if ((location[i].first!=1 && location[i].second!=1) || (location[i].first==1 && location[i].second==1))
+                {
+                    x=location[i].first;
+                    y=location[i].second;
+                    break;
+                }
+            if (x==1 && y==1)               //back to case1: center
+            {
+                cout<<a[x][y].first;
+                a[x][y].second=1;
+                loang_center(x,y,a);
+            }
+            else                            //back to case3: corner
+            {
+                cout<<a[x][y].first;
+                a[x][y].second=1;
+                loang_corner(x,y,a,x,y);
+            }
         }
-        else                        //case: corner
+        else                        //case3: corner
         {
-            cout<<9;
+            cout<<a[x][y].first;
             a[x][y].second=1;
             loang_corner(x,y,a,x,y);
         }
