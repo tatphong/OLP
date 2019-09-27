@@ -4,10 +4,10 @@ typedef pair<int, int> ii;
 int n, a[10000][10000], mau = 0;
 ii dem[10000];
 string s[10000];
-map<int, int> mp[10000];
+vector <int> bancolor[10000];
 void nhap()
 {
-    freopen("tomau.inp", "r", stdin);
+    freopen("TOMAU.INP", "r", stdin);
     cin >> n;
     for (int i = 0; i < n; ++i)
         cin >> s[i];
@@ -25,21 +25,24 @@ int tomau(int x)
 {
     int m = 1;
     for (m = 1; m <= mau + 1; ++m)
-        for (auto it = mp[x].begin(); it != mp[x].end(); ++it)
+    {
+        bool color_banned=false;
+        for (int i =0; i < bancolor[x].size(); ++i)
         {
-            if (it->first == m && it->second == 1)
-                continue;
+            if (bancolor[x][i] == m)
+                {color_banned=true;break;}
         }
-    mau = max(mau, m);
-    return m;
+        if (!color_banned)
+            {mau = max(mau, m);return m;}
+    }
 }
-void ktnutlienket(int x, int color)
+void update_nutlienket(int x, int color)
 {
     for (int i = 0; i < n; ++i)
-        if (a[i][x] = 1)
+        if (a[i][x] == 1)
         {
             --dem[i].second;
-            mp[x][color] = 1;
+            bancolor[i].push_back(color);
         }
 }
 int main()
@@ -57,35 +60,18 @@ int main()
                 ++dem[i].second;
             }
         }
-    //
-    //    cout<<n<<endl;
-    //    for (int i=0;i<n;++i)
-    //        cout<<s[i];
-    //    for (int i=0;i<n;++i)
-    //    {for (int j=0;j<n;++j)
-    //        cout<<a[i][j];
-    //        cout<<endl;
-    //    }
-    //    sort(dem,dem+n,cmp);
-    //    for (int i=0;i<n;++i)
-    //        cout<<dem[i].first<<" "<<dem[i].second<<endl;
-    //    cout<<endl;
     //solve
+    sort(dem, dem + n, cmp);
     while (n-- > 0)
     {
-        sort(dem, dem + n, cmp);
         int color = tomau(dem[0].first);
-        ktnutlienket(dem[0].first, color);
+        update_nutlienket(dem[0].first, color);
         dem[0].second = 0;
-    }
-    for (int i = 0; i < 10; ++i)
-    {
-        cout << "nut: " << i << endl;
-        for (auto it = mp[i].begin(); it != mp[i].end(); ++it)
-            cout << it->first << " " << it->second << endl;
+        sort(dem, dem + n, cmp);
     }
     //result
     //    freopen("tomau.out","w",stdout);
-    cout << mau << endl;
+    cout<<endl<< mau << endl;
     return 0;
 }
+
