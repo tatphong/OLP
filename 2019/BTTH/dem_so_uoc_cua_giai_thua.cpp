@@ -17,7 +17,7 @@ void sangnt()
             nt[j]=1;
     }
 }
-void decrease_zero()
+void delete_zero()
 {
     while (gt%10==0)
     {
@@ -37,7 +37,7 @@ int main()
     sangnt();
 
     //solve
-    decrease_zero();
+    delete_zero();
     while (gt>1)
     {
         for (int i=2;i<=10000000;++i)
