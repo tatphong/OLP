@@ -1,10 +1,26 @@
 #include <bits/stdc++.h>
-#include <iostream>
-#include <map>
+//#include <iostream>
+//#include <map>
 using namespace std;
 typedef pair <int,int>ii;
 string a,b,c;
 map <char,int> ma,mb;
+void taofile()
+{
+    freopen("STR.INP","w",stdout);
+    srand(time(nullptr));
+    for (int i=0;i<10000;++i)
+    {
+        int r=rand()%26+97;
+        cout<<char(r);
+    }
+    cout<<endl;
+    for (int i=0;i<1000;++i)
+    {
+        int r=rand()%26+97;
+        cout<<char(r);
+    }
+}
 void nhap()
 {
     freopen("STR.INP","r",stdin);
@@ -15,6 +31,7 @@ void nhap()
 int main()
 {
     ios_base::sync_with_stdio(0);
+//    taofile();
     nhap();
 
     int i=1,j=1,inear=0,jnear=0;
@@ -51,7 +68,7 @@ int main()
         }
     }
 
-    freopen("STR.OUT","w",stdout);
+//    freopen("STR.OUT","w",stdout);
     cout<<c;
     return 0;
 }
