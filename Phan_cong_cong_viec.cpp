@@ -3,7 +3,7 @@ using namespace std;
 int n,m,a[100000],cv[1000];
 int main()
 {
-    freopen("GTS1.INP","r",stdin);
+    freopen("phancong.INP","r",stdin);
     cin>>n>>m;
     for (int i=0;i<m;++i)
         cin>>a[i];
