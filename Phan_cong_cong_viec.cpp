@@ -10,7 +10,7 @@ int main()
 
     //solve
     sort(a,a+m,greater<int>());
-    //note: cv[x][0] is sum of time to do all jobs
+    //note: cv[x] là tổng thời gian cần để máy x xong việc
     int i=0;
     while(i<m)
     {
