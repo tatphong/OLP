@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include<bits/stdc++.h> //O()
 using namespace std;
 int n,a[1000][1000],s,cost=0;
 map<int,bool>visited;
