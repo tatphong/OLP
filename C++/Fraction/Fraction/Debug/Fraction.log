@@ -1,0 +1,4 @@
+﻿  Main.cpp
+E:\Code\OLP\Fraction\Fraction\Main.cpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\Code\OLP\Fraction\Fraction\Main.cpp(9,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Fraction.vcxproj -> E:\Code\OLP\Fraction\Debug\Fraction.exe

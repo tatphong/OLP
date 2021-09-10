@@ -1,0 +1,5 @@
+﻿  CauhoiTN.cpp
+C:\Users\Phong\Downloads\P190000_Baitap2\CauhoiTN.cpp(70,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  P190000_Baitap2.cpp
+  Generating Code...
+  P190000_Baitap2.vcxproj -> C:\Users\Phong\Downloads\x64\Debug\P190000_Baitap2.exe
