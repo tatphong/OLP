@@ -1,0 +1,4 @@
+﻿  main.cpp
+E:\Code\OLP\C++\Point3D\Point3D\main.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\Code\OLP\C++\Point3D\Point3D\main.cpp(34,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Point3D.vcxproj -> E:\Code\OLP\C++\Point3D\Debug\Point3D.exe
